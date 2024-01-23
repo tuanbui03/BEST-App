@@ -7,6 +7,8 @@ class TTexts {
       "Welcome to a World of Limitless Choice - Your Perfect Product Awaits";
   static const String onBoardingSubTitle2 =
       "From Our Doorstep to Your - Swift, Secure, and Contactless Delivery";
+  static const String onBoardingSubTitle3 =
+      "Chuc quy khach co trai nghiem tuyet voi";
 
   static const String homeAppBarTitle = "Good day for shopping";
   static const String homeAppBarSubTitle = "Dang suy nghi";
