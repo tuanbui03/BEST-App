@@ -68,4 +68,10 @@ class UserCtrl {
     final std = await db.query(tableName, where: 'userName = ?', whereArgs: [name]);
     return std;
   }
+
+  static Future<List<Map<String, dynamic>>> findByEmail(String email) async {
+    final db = await initDb();
+    final std = await db.query(tableName, where: 'Email = ?', whereArgs: [email]);
+    return std;
+  }
 }

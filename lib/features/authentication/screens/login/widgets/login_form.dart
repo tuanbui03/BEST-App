@@ -68,7 +68,7 @@ class TLoginForm extends StatelessWidget {
                 width: double.infinity,
                 child: ElevatedButton (
                     onPressed: () async {
-                      user = await UserCtrl.findByName(emailCtrl.text);
+                      user = await UserCtrl.findByEmail(emailCtrl.text);
                       if(user.isNotEmpty && passwordCtrl.text == user[0]['Password']){
                         if (user[0]['Role'] == 1) {
                           Navigator.push(context,MaterialPageRoute(builder: (builder) => ScreenAdmin()));
