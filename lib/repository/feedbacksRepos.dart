@@ -2,12 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import '../model/products.dart';
- 
-class ProductDB {
-
-  static String tableName = 'Products';
-
+import '../entity/feedbacks.dart';
+class FeedbacksCtrl {
+  
+  static String tableName = 'Feedbacks';
   static initDb() async {
     WidgetsFlutterBinding.ensureInitialized();
     final dbStd = openDatabase(
@@ -15,17 +13,10 @@ class ProductDB {
       onCreate: (db, version) {
         String sqlCrate = """
           CREATE TABLE IF NOT EXISTS $tableName (
-            ProductID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-            ProductName TEXT NOT NULL, 
-            ImageID INTEGER NOT NULL REFERENCES Image (ImageID), 
-            BrandID INTEGER REFERENCES Brands (BrandID) NOT NULL, 
-            Price REAL NOT NULL, 
-            Sale INTEGER NOT NULL, 
-            Status INTEGER NOT NULL, 
-            Description TEXT NOT NULL, 
-            Size TEXT NOT NULL, 
-            Color TEXT NOT NULL, 
-            Code TEXT NOT NULL);
+            FeedbackID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            UserID INTEGER REFERENCES Users (UserID) NOT NULL, 
+            ProductID INTEGER REFERENCES Product (ProductID) NOT NULL,
+            Content TEXT);
           """;
         return db.execute(sqlCrate);
       },
@@ -34,21 +25,21 @@ class ProductDB {
     return dbStd;
   }
 
-  static void insertTable(Products products) async {
+  static void insertTable(Feedbacks feedback) async {
     final db = await initDb();
-    db.insert(tableName, products.toMap(),
+    db.insert(tableName, feedback.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  static void updateTable(Products products) async {
+  static void updateTable(Feedbacks feedback) async {
     final db = await initDb();
-    db.update(tableName, products.toMap(),
-        where: 'productID = ?', whereArgs: [products.productID]);
+    db.update(tableName, feedback.toMap(),
+        where: 'feedbackID = ?', whereArgs: [feedback.feedbackID]);
   }
 
   static void deleteTable(int id) async {
     final db = await initDb();
-    db.delete(tableName, where: 'productID = ?', whereArgs: [id]);
+    db.delete(tableName, where: 'feedbackID = ?', whereArgs: [id]);
   }
 
   static Future<List<Map<String, dynamic>>> getListTable() async {
@@ -59,8 +50,7 @@ class ProductDB {
 
   static Future<List<Map<String, dynamic>>> getOneTableById(int id) async {
     final db = await initDb();
-    final std = await db.query(
-        tableName, where: 'productID = ?', whereArgs: [id]);
+    final std = await db.query(tableName, where: 'feedbackID = ?', whereArgs: [id]);
     return std;
   }
 }

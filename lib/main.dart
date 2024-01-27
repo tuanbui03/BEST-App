@@ -1,4 +1,4 @@
-import 'package:best/model/users.dart';
+import 'package:best/entity/users.dart';
 import 'package:flutter/material.dart';
 import 'app.dart';
 

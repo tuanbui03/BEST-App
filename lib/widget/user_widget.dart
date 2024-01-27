@@ -1,5 +1,5 @@
 
-import 'package:best/model/users.dart';
+import 'package:best/entity/users.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

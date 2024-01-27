@@ -2,11 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import '../model/payments.dart';
-class PaymentDB {
-
-  static String tableName = 'Payments';
-
+import '../entity/images.dart';
+class ImageDB {
+  
+  static String tableName = 'Images';
   static initDb() async {
     WidgetsFlutterBinding.ensureInitialized();
     final dbStd = openDatabase(
@@ -14,8 +13,8 @@ class PaymentDB {
       onCreate: (db, version) {
         String sqlCrate = """
           CREATE TABLE IF NOT EXISTS $tableName (
-            PaymentID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-            Description TEXT NOT NULL);
+            ImageID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+            Image BLOB NOT NULL);
           """;
         return db.execute(sqlCrate);
       },
@@ -24,21 +23,21 @@ class PaymentDB {
     return dbStd;
   }
 
-  static void insertTable(Payment payment) async {
+  static void insertTable(Images image) async {
     final db = await initDb();
-    db.insert(tableName, payment.toMap(),
+    db.insert(tableName, image.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  static void updateTable(Payment payment) async {
+  static void updateTable(Images image) async {
     final db = await initDb();
-    db.update(tableName, payment.toMap(),
-        where: 'PaymentID = ?', whereArgs: [payment.paymentID]);
+    db.update(tableName, image.toMap(),
+        where: 'imageID = ?', whereArgs: [image.imageID]);
   }
 
   static void deleteTable(int id) async {
     final db = await initDb();
-    db.delete(tableName, where: 'PaymentID = ?', whereArgs: [id]);
+    db.delete(tableName, where: 'imageID = ?', whereArgs: [id]);
   }
 
   static Future<List<Map<String, dynamic>>> getListTable() async {
@@ -49,8 +48,7 @@ class PaymentDB {
 
   static Future<List<Map<String, dynamic>>> getOneTableById(int id) async {
     final db = await initDb();
-    final std = await db.query(
-        tableName, where: 'PaymentID = ?', whereArgs: [id]);
+    final std = await db.query(tableName, where: 'imageID = ?', whereArgs: [id]);
     return std;
   }
 }

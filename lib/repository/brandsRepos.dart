@@ -2,19 +2,21 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import '../model/images.dart';
-class ImageDB {
-  
-  static String tableName = 'Images';
+import '../entity/brands.dart';
+
+class BrandsRepos {
+  static String tableName = 'Brands';
+
   static initDb() async {
     WidgetsFlutterBinding.ensureInitialized();
     final dbStd = openDatabase(
       join(await getDatabasesPath(), 'dbBETS.db'),
       onCreate: (db, version) {
         String sqlCrate = """
-          CREATE TABLE IF NOT EXISTS $tableName (
-            ImageID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-            Image BLOB NOT NULL);
+        CREATE TABLE IF NOT EXISTS $tableName (
+         BrandID TEXT PRIMARY KEY NOT NULL,
+         BrandName TEXT NOT NULL,
+         Description TEXT NOT NULL);
           """;
         return db.execute(sqlCrate);
       },
@@ -23,21 +25,21 @@ class ImageDB {
     return dbStd;
   }
 
-  static void insertTable(Images image) async {
+  static void insertTable(Brands brand) async {
     final db = await initDb();
-    db.insert(tableName, image.toMap(),
+    db.insert(tableName, brand.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  static void updateTable(Images image) async {
+  static void updateTable(Brands brand) async {
     final db = await initDb();
-    db.update(tableName, image.toMap(),
-        where: 'imageID = ?', whereArgs: [image.imageID]);
+    db.update(tableName, brand.toMap(),
+        where: 'brandID = ?', whereArgs: [brand.brandID]);
   }
 
   static void deleteTable(int id) async {
     final db = await initDb();
-    db.delete(tableName, where: 'imageID = ?', whereArgs: [id]);
+    db.delete(tableName, where: 'brandID = ?', whereArgs: [id]);
   }
 
   static Future<List<Map<String, dynamic>>> getListTable() async {
@@ -48,7 +50,7 @@ class ImageDB {
 
   static Future<List<Map<String, dynamic>>> getOneTableById(int id) async {
     final db = await initDb();
-    final std = await db.query(tableName, where: 'imageID = ?', whereArgs: [id]);
+    final std = await db.query(tableName, where: 'brandID = ?', whereArgs: [id]);
     return std;
   }
 }

@@ -1,9 +1,9 @@
-import 'package:best/controller/usersCtrl.dart';
+import 'package:best/repository/usersRepos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
-import '../../../../../model/users.dart';
+import '../../../../../entity/users.dart';
 import '../../../../../screenAdmin.dart';
 import '../../../../../screenCustomer.dart';
 import '../../../../../utils/constants/sizes.dart';

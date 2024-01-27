@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import '../model/users.dart';
+import '../entity/users.dart';
 class UserCtrl {
 
   static String tableName = 'Users';

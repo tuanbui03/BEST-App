@@ -2,11 +2,11 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import '../model/wishlists.dart';
+import '../entity/products.dart';
+ 
+class ProductDB {
 
-class WishlistsDB {
-
-  static String tableName = 'Wishlist';
+  static String tableName = 'Products';
 
   static initDb() async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -15,11 +15,17 @@ class WishlistsDB {
       onCreate: (db, version) {
         String sqlCrate = """
           CREATE TABLE IF NOT EXISTS $tableName (
-            WishlistID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-            ProductID INTEGER REFERENCES Product (ProductID) NOT NULL, 
-            UserID INTEGER NOT NULL REFERENCES Users (UserID), 
-            Created_at TEXT NOT NULL, 
-            Updated_at TEXT NOT NULL);
+            ProductID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+            ProductName TEXT NOT NULL, 
+            ImageID INTEGER NOT NULL REFERENCES Image (ImageID), 
+            BrandID INTEGER REFERENCES Brands (BrandID) NOT NULL, 
+            Price REAL NOT NULL, 
+            Sale INTEGER NOT NULL, 
+            Status INTEGER NOT NULL, 
+            Description TEXT NOT NULL, 
+            Size TEXT NOT NULL, 
+            Color TEXT NOT NULL, 
+            Code TEXT NOT NULL);
           """;
         return db.execute(sqlCrate);
       },
@@ -28,21 +34,21 @@ class WishlistsDB {
     return dbStd;
   }
 
-  static void insertTable(Wishlist wishlist) async {
+  static void insertTable(Products products) async {
     final db = await initDb();
-    db.insert(tableName, wishlist.toMap(),
+    db.insert(tableName, products.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
-  static void updateTable(Wishlist wishlist) async {
+  static void updateTable(Products products) async {
     final db = await initDb();
-    db.update(tableName, wishlist.toMap(),
-        where: 'wishlistID = ?', whereArgs: [wishlist.wishlistID]);
+    db.update(tableName, products.toMap(),
+        where: 'productID = ?', whereArgs: [products.productID]);
   }
 
   static void deleteTable(int id) async {
     final db = await initDb();
-    db.delete(tableName, where: 'wishlistID = ?', whereArgs: [id]);
+    db.delete(tableName, where: 'productID = ?', whereArgs: [id]);
   }
 
   static Future<List<Map<String, dynamic>>> getListTable() async {
@@ -54,7 +60,7 @@ class WishlistsDB {
   static Future<List<Map<String, dynamic>>> getOneTableById(int id) async {
     final db = await initDb();
     final std = await db.query(
-        tableName, where: 'wishlistID = ?', whereArgs: [id]);
+        tableName, where: 'productID = ?', whereArgs: [id]);
     return std;
   }
 }

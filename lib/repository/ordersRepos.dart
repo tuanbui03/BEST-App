@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import '../model/orders.dart';
+import '../entity/orders.dart';
 class OrdersCtrl {
 
   static String tableName = 'Orders';
