@@ -16,16 +16,17 @@ class ProductDB {
         String sqlCrate = """
           CREATE TABLE IF NOT EXISTS $tableName (
             ProductID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
-            ProductName TEXT NOT NULL, 
             ImageID INTEGER NOT NULL REFERENCES Image (ImageID), 
             BrandID INTEGER REFERENCES Brands (BrandID) NOT NULL, 
+            ProductName TEXT NOT NULL, 
             Price REAL NOT NULL, 
-            Sale INTEGER NOT NULL, 
-            Status INTEGER NOT NULL, 
+            Sale INTEGER NOT NULL,
             Description TEXT NOT NULL, 
             Size TEXT NOT NULL, 
             Color TEXT NOT NULL, 
             Code TEXT NOT NULL);
+            Discount INTEGER NOT NULL,
+            Status INTEGER NOT NULL);
           """;
         return db.execute(sqlCrate);
       },

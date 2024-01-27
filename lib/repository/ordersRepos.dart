@@ -15,15 +15,15 @@ class OrdersCtrl {
         String sqlCrate = """
           CREATE TABLE IF NOT EXISTS $tableName (
             OrderID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+            UserID INTEGER REFERENCES Users (UserID) NOT NULL, 
+            PaymentID INTEGER NOT NULL REFERENCES Payment (PaymentID),
             Address TEXT NOT NULL, 
             Total REAL, 
-            DateCreate TEXT NOT NULL, 
+            DateCreated TEXT NOT NULL, 
             Status INTEGER NOT NULL, 
             Phone TEXT NOT NULL, 
             FullName TEXT NOT NULL, 
-            Email TEXT NOT NULL, 
-            UserID INTEGER REFERENCES Users (UserID) NOT NULL, 
-            PaymentID INTEGER NOT NULL REFERENCES Payment (PaymentID));
+            Email TEXT NOT NULL);
           """;
         return db.execute(sqlCrate);
       },
