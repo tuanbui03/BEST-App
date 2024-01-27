@@ -15,7 +15,7 @@ class PaymentDB {
         String sqlCrate = """
           CREATE TABLE IF NOT EXISTS $tableName (
             PaymentID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-             Description TEXT NOT NULL);
+            Description TEXT NOT NULL);
           """;
         return db.execute(sqlCrate);
       },

@@ -12,8 +12,9 @@ class ImageDB {
       join(await getDatabasesPath(), 'dbBETS.db'),
       onCreate: (db, version) {
         String sqlCrate = """
-          CREATE TABLE IF NOT EXISTS $tableName 
-          (ImageID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Image BLOB NOT NULL);
+          CREATE TABLE IF NOT EXISTS $tableName (
+            ImageID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 
+            Image BLOB NOT NULL);
           """;
         return db.execute(sqlCrate);
       },

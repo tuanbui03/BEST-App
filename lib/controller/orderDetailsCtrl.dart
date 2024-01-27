@@ -17,10 +17,10 @@ class OrderDetailsDB {
             OrderDetailsID INTEGER PRIMARY KEY NOT NULL,
             OrderID INTEGER REFERENCES Orders (OrderID) NOT NULL,
             VoucherID INTEGER REFERENCES Voucher (VoucherID) NOT NULL,
-             ProductID INTEGER REFERENCES Product (ProductID) NOT NULL,
-              Quantity INTEGER NOT NULL, 
-              Price REAL NOT NULL, 
-              ProductSize TEXT NOT NULL);
+            ProductID INTEGER REFERENCES Product (ProductID) NOT NULL,
+            Quantity INTEGER NOT NULL, 
+            Price REAL NOT NULL, 
+            ProductSize TEXT NOT NULL);
           """;
         return db.execute(sqlCrate);
       },

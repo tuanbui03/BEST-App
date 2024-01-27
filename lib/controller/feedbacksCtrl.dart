@@ -12,9 +12,11 @@ class FeedbacksCtrl {
       join(await getDatabasesPath(), 'dbBETS.db'),
       onCreate: (db, version) {
         String sqlCrate = """
-          CREATE TABLE IF NOT EXISTS $tableName (FeedbackID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-           UserID INTEGER REFERENCES Users (UserID) NOT NULL, 
-           ProductID INTEGER REFERENCES Product (ProductID) NOT NULL, Content TEXT);
+          CREATE TABLE IF NOT EXISTS $tableName (
+            FeedbackID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            UserID INTEGER REFERENCES Users (UserID) NOT NULL, 
+            ProductID INTEGER REFERENCES Product (ProductID) NOT NULL,
+            Content TEXT);
           """;
         return db.execute(sqlCrate);
       },

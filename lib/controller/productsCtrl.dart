@@ -25,7 +25,6 @@ class ProductDB {
             Description TEXT NOT NULL, 
             Size TEXT NOT NULL, 
             Color TEXT NOT NULL, 
-            WishlistID INTEGER NOT NULL, 
             Code TEXT NOT NULL);
           """;
         return db.execute(sqlCrate);
