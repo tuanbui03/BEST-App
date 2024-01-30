@@ -1,3 +1,4 @@
+import 'package:best/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -52,7 +53,7 @@ class TLoginForm extends StatelessWidget {
 
                 /// Forget password
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () => Get.to(() => const ForgetPassword()),
                     child: const Text(TTexts.forgetPassword)),
               ],
             ),
@@ -66,7 +67,7 @@ class TLoginForm extends StatelessWidget {
                     child: const Text(TTexts.signIn))),
             const SizedBox(height: TSizes.spaceBtwItems),
 
-            /// Creat account button
+            /// Create account button
             SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
