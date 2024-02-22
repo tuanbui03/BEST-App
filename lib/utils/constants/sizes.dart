@@ -40,6 +40,10 @@ class TSizes {
   static const double borderRadiusLg = 12.0;
 
   // Divider height
+  static const double dividerHeight = 1.0;
+
+
+  // Product item dimensions
   static const double productImageSize = 120.0;
   static const double productImageRadius = 16.0;
   static const double productItemHeight = 160.0;

@@ -1,9 +1,13 @@
+import 'package:best/features/personalization/settings/settings.dart';
 import 'package:best/features/shop/screens/home/home.dart';
+import 'package:best/features/shop/screens/wishlist/wishlist.dart';
 import 'package:best/utils/constants/colors.dart';
 import 'package:best/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
+import 'features/shop/screens/store/store.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
@@ -44,8 +48,8 @@ class NavigationController extends GetxController {
 
   final screens = [
     const HomeScreen(),
-    Container(color: Colors.purple),
-    Container(color: Colors.orange),
-    Container(color: Colors.blue),
+    const StoreScreen(),
+    const FavouriteScreen(),
+    const SettingsScreen(),
   ];
 }

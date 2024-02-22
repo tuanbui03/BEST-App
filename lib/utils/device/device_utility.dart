@@ -40,11 +40,15 @@ class TDeviceUtils {
     return MediaQuery.of(Get.context!).size.width;
   }
 
+  static double getScreenWidth(BuildContext context) {
+    return MediaQuery.of(context).size.width;
+  }
+
   static double getPixelRatio() {
     return MediaQuery.of(Get.context!).devicePixelRatio;
   }
 
-  static double getStausBarHeight() {
+  static double getStatusBarHeight() {
     return MediaQuery.of(Get.context!).padding.top;
   }
 

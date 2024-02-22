@@ -24,4 +24,13 @@ class TImages {
   static const String deliveredEmailIllustration = "assets/images/animations/sammy-line-man-receives-a-mail.png";
   static const String verifyIllustration = "assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif";
 
+  // Banners
+  static const String promoBanner1 = "assets/images/banners/banner1.jpg";
+  static const String promoBanner2 = "assets/images/banners/banner2.jpg";
+  static const String promoBanner3 = "assets/images/banners/banner3.jpg";
+
+  static const String productImage1 = "assets/images/products/tomi_dogfood.png";
+
+  static const String user = "assets/images/content/user.png";
+
 }
