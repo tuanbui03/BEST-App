@@ -1,3 +1,4 @@
+import 'package:best/api/userAPI.dart';
 import 'package:best/features/authentication/screens/password_configuration/forget_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,9 @@ class TLoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final emailCtrl = TextEditingController();
+    final passwordCtrl = TextEditingController();
+
     return Form(
       child: Padding(
         padding: const EdgeInsets.symmetric(
@@ -24,6 +28,7 @@ class TLoginForm extends StatelessWidget {
           children: [
             /// Email
             TextFormField(
+              controller: emailCtrl,
               decoration: const InputDecoration(
                   prefixIcon: Icon(Iconsax.direct_right),
                   labelText: TTexts.email),
@@ -32,6 +37,7 @@ class TLoginForm extends StatelessWidget {
 
             /// Password
             TextFormField(
+              controller: passwordCtrl,
               decoration: const InputDecoration(
                 prefixIcon: Icon(Iconsax.password_check),
                 labelText: TTexts.password,
@@ -59,6 +65,19 @@ class TLoginForm extends StatelessWidget {
               ],
             ),
             const SizedBox(height: TSizes.spaceBtwSections),
+
+            // /// Sign in button
+            // SizedBox(
+            //     width: double.infinity,
+            //     child: ElevatedButton(
+            //           onPressed: () async{
+            //             List list = await UserAPI.getUsers();
+            //             print("Result : $list");
+            //             Navigator.push(context, MaterialPageRoute(builder: (builder) =>NavigationMenu()));
+            //           },
+            //         //onPressed: () => Get.to(() => const NavigationMenu()),
+            //         child: const Text(TTexts.signIn))),
+            // const SizedBox(height: TSizes.spaceBtwItems),
 
             /// Sign in button
             SizedBox(
