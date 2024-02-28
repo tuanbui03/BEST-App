@@ -1,26 +1,15 @@
-import 'package:best/common/widgets/appbar/appbar.dart';
-import 'package:best/common/widgets/custom_shapes/curved_edges/curved_edges.dart';
 import 'package:best/common/widgets/products/product_cart/product_cart_vertical.dart';
+import 'package:best/features/shop/screens/all_products/all_products.dart';
 import 'package:best/features/shop/screens/home/widgets/home_appbar.dart';
 import 'package:best/features/shop/screens/home/widgets/home_categories.dart';
 import 'package:best/features/shop/screens/home/widgets/promo_slider.dart';
-import 'package:best/utils/constants/colors.dart';
 import 'package:best/utils/constants/sizes.dart';
-import 'package:best/utils/constants/text_string.dart';
-import 'package:best/utils/device/device_utility.dart';
-import 'package:best/utils/helpers/helper_functions.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
+import 'package:get/get.dart';
 
-import '../../../../common/widgets/custom_shapes/containers/circular_container.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
-import '../../../../common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
-import '../../../../common/widgets/image_text_widgets/vertical_image_dark.dart';
-import '../../../../common/widgets/images/t_rounded_image.dart';
 import '../../../../common/widgets/layouts/grid_layout.dart';
-import '../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import '../../../../utils/constants/image_strings.dart';
 
@@ -34,7 +23,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             /// Header
-            TPrimaryHeaderContainer(
+            const TPrimaryHeaderContainer(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,7 +54,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: TSizes.spaceBtwSections),
+                  SizedBox(height: TSizes.spaceBtwSections),
                 ],
               ),
             ),
@@ -76,12 +65,18 @@ class HomeScreen extends StatelessWidget {
               child: Column(
                 children: [
                   /// Slide
-                  TPromoSlider(banners: [
+                  const TPromoSlider(banners: [
                     TImages.promoBanner1,
                     TImages.promoBanner2,
                     TImages.promoBanner3
                   ]),
-                  SizedBox(height: TSizes.spaceBtwSections),
+                  const SizedBox(height: TSizes.spaceBtwSections),
+
+                  /// Heading
+                  TSectionHeading(
+                      title: 'Popular Products',
+                      onPressed: () => Get.to(() => const AllProduct())),
+                  const SizedBox(height: TSizes.spaceBtwItems),
 
                   /// Popular Product
                   TGridLayout(

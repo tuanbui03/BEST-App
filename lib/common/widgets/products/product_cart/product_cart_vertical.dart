@@ -14,7 +14,6 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../custom_shapes/containers/rounded_container.dart';
 import '../../icons/t_circular_icon.dart';
-import '../../texts/t_brand_title_text.dart';
 
 class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({super.key});
@@ -49,7 +48,7 @@ class TProductCardVertical extends StatelessWidget {
 
                   /// Sale Tag
                   Positioned(
-                    top: 12,
+                    top: 10,
                     child: TRoundedContainer(
                       radius: TSizes.sm,
                       backgroundColor: TColors.secondary.withOpacity(0.8),
